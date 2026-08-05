@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react'
+import { useId, useMemo, useRef, useState } from 'react'
 import { formatDollars, formatDollarsCompact, formatDuration, niceStep } from '../lib/format'
 
 interface Props {
@@ -26,6 +26,7 @@ function toPoints(series: number[], domainMonths: number): string {
 }
 
 export default function PayoffChart({ current, next, currentLabel, nextLabel }: Props) {
+  const gradientId = `payoff-gradient-${useId().replace(/:/g, '')}`
   const wrapRef = useRef<HTMLDivElement>(null)
   const [hoverMonth, setHoverMonth] = useState<number | null>(null)
   const [showTable, setShowTable] = useState(false)
@@ -34,7 +35,7 @@ export default function PayoffChart({ current, next, currentLabel, nextLabel }: 
   const startBalance = current[0]
   const yStep = niceStep(startBalance / 4)
   const yAxisMax = yStep * 4
-  const yTicks = [0, yStep, yStep * 2, yStep * 3, yAxisMax]
+  const yTicks = [0, yAxisMax]
 
   const yScale = (value: number) => PLOT_TOP + (1 - value / yAxisMax) * (PLOT_BOTTOM - PLOT_TOP)
   const xScale = (month: number) => PLOT_LEFT + (month / domainMonths) * (PLOT_RIGHT - PLOT_LEFT)
@@ -50,10 +51,16 @@ export default function PayoffChart({ current, next, currentLabel, nextLabel }: 
     [next, domainMonths, yAxisMax],
   )
 
-  const xTicks = [0, 0.25, 0.5, 0.75, 1].map((f) => Math.round(f * domainMonths))
-
   const currentEndMonth = current.length - 1
   const nextEndMonth = next.length - 1
+
+  const nextAreaPoints = useMemo(
+    () => `${xScale(0)},${PLOT_BOTTOM} ${nextScaled} ${xScale(nextEndMonth)},${PLOT_BOTTOM}`,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [nextScaled, nextEndMonth, domainMonths],
+  )
+
+  const xTicks = [0, domainMonths]
   const labelsClose = Math.abs(currentEndMonth - nextEndMonth) / domainMonths < 0.08
 
   function labelAnchor(month: number): 'start' | 'middle' | 'end' {
@@ -103,6 +110,13 @@ export default function PayoffChart({ current, next, currentLabel, nextLabel }: 
         onPointerLeave={() => setHoverMonth(null)}
       >
         <svg viewBox={`0 0 ${W} ${H}`} className="payoff-chart" role="img" aria-label={`Balance over time: ${currentLabel} versus ${nextLabel}`}>
+          <defs>
+            <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" className="chart-area-stop-start" />
+              <stop offset="100%" className="chart-area-stop-end" />
+            </linearGradient>
+          </defs>
+
           {yTicks.map((t) => (
             <g key={t}>
               <line x1={PLOT_LEFT} x2={PLOT_RIGHT} y1={yScale(t)} y2={yScale(t)} className="chart-gridline" />
@@ -117,6 +131,8 @@ export default function PayoffChart({ current, next, currentLabel, nextLabel }: 
               {m === 0 ? 'Today' : formatDuration(m)}
             </text>
           ))}
+
+          <polygon points={nextAreaPoints} fill={`url(#${gradientId})`} className="chart-area-next" />
 
           <polyline points={currentScaled} className="chart-line chart-line-current" />
           <polyline points={nextScaled} className="chart-line chart-line-next" />

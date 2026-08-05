@@ -50,11 +50,15 @@ export default function PlanDetail() {
         </div>
       )}
 
+      <div className="hero-stat">
+        <span className="hero-stat-label">You'll save</span>
+        <span className="hero-stat-value">{formatDollars(plan.interestSaved)}</span>
+      </div>
+
       <div className="stat-tile-grid">
         <StatTile label="Monthly payment" value={`${formatDollars(plan.monthlyPayment)}/mo`} />
         <StatTile label="Debt-free in" value={formatDuration(plan.months)} />
         <StatTile label="Total cost" value={formatDollars(plan.totalCost)} />
-        <StatTile label="You'll save" value={formatDollars(plan.interestSaved)} tone="good" />
       </div>
 
       <section className="detail-section">

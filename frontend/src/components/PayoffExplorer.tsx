@@ -11,6 +11,11 @@ interface Props {
 const DEFAULT_RATE = 14.5
 const DEFAULT_TERM = 36
 
+function sliderFillStyle(value: number, min: number, max: number) {
+  const percent = ((value - min) / (max - min)) * 100
+  return { background: `linear-gradient(to right, var(--accent) ${percent}%, var(--border) ${percent}%)` }
+}
+
 export default function PayoffExplorer({ cards }: Props) {
   const totalBalance = useMemo(() => cards.reduce((sum, c) => sum + c.balance, 0), [cards])
   const baseline = useMemo(
@@ -56,6 +61,7 @@ export default function PayoffExplorer({ cards }: Props) {
             step={0.25}
             value={rate}
             onChange={(e) => handleRateChange(Number(e.target.value))}
+            style={sliderFillStyle(rate, 5, 27)}
           />
         </label>
 
@@ -71,6 +77,7 @@ export default function PayoffExplorer({ cards }: Props) {
             step={5}
             value={payment}
             onChange={(e) => setPayment(Number(e.target.value))}
+            style={sliderFillStyle(payment, minPayment, maxPayment)}
           />
         </label>
 
