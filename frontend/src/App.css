@@ -113,6 +113,13 @@ section.plans-section {
   display: grid;
   grid-template-columns: 1fr;
   gap: 12px;
+  margin-top: 32px;
+}
+
+@media (min-width: 640px) {
+  .insight-grid {
+    margin-top: 40px;
+  }
 }
 
 @media (min-width: 640px) {

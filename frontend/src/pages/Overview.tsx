@@ -34,6 +34,8 @@ export default function Overview() {
         <h1>Let's pay down your debt</h1>
       </header>
 
+      <PayoffExplorer cards={cards} />
+
       <div className="insight-grid">
         <InsightCard
           tone="critical"
@@ -51,8 +53,6 @@ export default function Overview() {
           building equity. Leave this one alone.
         </InsightCard>
       </div>
-
-      <PayoffExplorer cards={cards} />
 
       <section className="plans-section">
         <h2>Ways to pay it off faster</h2>
