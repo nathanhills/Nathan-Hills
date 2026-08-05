@@ -11,6 +11,18 @@
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
+  /* Chart & insight tokens (dataviz skill palette). Status colors are fixed —
+     the same hex in light and dark, never themed. */
+  --muted: #898781;
+  --gridline: #e1e0d9;
+  --baseline: #c3c2b7;
+  --good: #0ca30c;
+  --critical: #d03b3b;
+  --good-bg: rgba(12, 163, 12, 0.1);
+  --critical-bg: rgba(208, 59, 59, 0.1);
+  --series-new: var(--accent);
+  --series-current: var(--muted);
+
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
@@ -41,6 +53,8 @@
     --accent-bg: rgba(192, 132, 252, 0.15);
     --accent-border: rgba(192, 132, 252, 0.5);
     --social-bg: rgba(47, 48, 58, 0.5);
+    --gridline: #2c2c2a;
+    --baseline: #383835;
     --shadow:
       rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
   }
