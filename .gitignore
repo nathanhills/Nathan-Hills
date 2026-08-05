@@ -1,0 +1,12 @@
+# Python (frontend/ has its own .gitignore for Node artifacts)
+backend/venv/
+backend/__pycache__/
+backend/**/__pycache__/
+*.pyc
+backend/app.db
+backend/.env
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
