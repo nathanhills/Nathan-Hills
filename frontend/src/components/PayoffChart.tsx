@@ -70,7 +70,7 @@ export default function PayoffChart({ current, next, currentLabel, nextLabel }: 
     return 'middle'
   }
 
-  function handlePointerMove(e: React.PointerEvent<HTMLDivElement>) {
+  function updateHoverFromPointer(e: React.PointerEvent<HTMLDivElement>) {
     const rect = wrapRef.current?.getBoundingClientRect()
     if (!rect) return
     const fraction = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width))
@@ -106,8 +106,15 @@ export default function PayoffChart({ current, next, currentLabel, nextLabel }: 
       <div
         className="payoff-chart-wrap"
         ref={wrapRef}
-        onPointerMove={handlePointerMove}
-        onPointerLeave={() => setHoverMonth(null)}
+        onPointerDown={updateHoverFromPointer}
+        onPointerMove={updateHoverFromPointer}
+        onPointerLeave={(e) => {
+          // A tap's pointerup fires almost immediately and can trigger this
+          // before the tapped state ever renders - only dismiss for mouse,
+          // where "leave" genuinely means the pointer moved away. A touch
+          // tap stays pinned until the user taps elsewhere on the chart.
+          if (e.pointerType !== 'touch') setHoverMonth(null)
+        }}
       >
         <svg viewBox={`0 0 ${W} ${H}`} className="payoff-chart" role="img" aria-label={`Balance over time: ${currentLabel} versus ${nextLabel}`}>
           <defs>

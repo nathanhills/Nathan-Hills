@@ -3,36 +3,61 @@
 .page {
   max-width: 760px;
   margin: 0 auto;
-  padding: 56px 24px 96px;
+  padding: 28px 20px 64px;
   text-align: left;
   flex-grow: 1;
   width: 100%;
   box-sizing: border-box;
 }
 
+@media (min-width: 640px) {
+  .page {
+    padding: 56px 24px 96px;
+  }
+}
+
 .page-header {
-  margin-bottom: 28px;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 640px) {
+  .page-header {
+    margin-bottom: 28px;
+  }
 }
 
 .page-eyebrow {
   display: block;
   color: var(--muted);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   margin-bottom: 6px;
 }
 
 .page-header h1 {
   margin: 4px 0 0;
-  font-size: 36px;
+  font-size: 28px;
   font-weight: 800;
-  letter-spacing: -0.9px;
+  letter-spacing: -0.7px;
+}
+
+@media (min-width: 640px) {
+  .page-header h1 {
+    font-size: 36px;
+    letter-spacing: -0.9px;
+  }
 }
 
 .page-subtitle {
   margin: 6px 0 0;
   color: var(--text);
-  font-size: 16px;
+  font-size: 15px;
+}
+
+@media (min-width: 640px) {
+  .page-subtitle {
+    font-size: 16px;
+  }
 }
 
 .error {
@@ -47,7 +72,8 @@
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
-  margin-bottom: 20px;
+  padding: 10px 0;
+  margin: -10px 0 10px;
 }
 
 .back-link:hover {
@@ -57,7 +83,15 @@
 section.detail-section,
 section.explorer-card,
 section.plans-section {
-  margin-top: 40px;
+  margin-top: 32px;
+}
+
+@media (min-width: 640px) {
+  section.detail-section,
+  section.explorer-card,
+  section.plans-section {
+    margin-top: 40px;
+  }
 }
 
 .page h2 {
@@ -77,22 +111,29 @@ section.plans-section {
 
 .insight-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 12px;
 }
 
-@media (max-width: 640px) {
+@media (min-width: 640px) {
   .insight-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
 .insight-card {
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  padding: 20px;
+  gap: 12px;
+  padding: 18px;
   border-radius: 20px;
+}
+
+@media (min-width: 640px) {
+  .insight-card {
+    gap: 14px;
+    padding: 20px;
+  }
 }
 
 .insight-card-critical {
@@ -156,22 +197,30 @@ section.plans-section {
 /* Explorer */
 
 .explorer-card {
-  padding: 24px;
+  padding: 18px;
   background: var(--surface);
   border-radius: 24px;
 }
 
-.explorer-controls {
-  display: grid;
-  grid-template-columns: 1fr 1fr auto;
-  gap: 24px;
-  align-items: end;
-  margin-bottom: 28px;
+@media (min-width: 640px) {
+  .explorer-card {
+    padding: 24px;
+  }
 }
 
-@media (max-width: 640px) {
+.explorer-controls {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  align-items: end;
+  margin-bottom: 24px;
+}
+
+@media (min-width: 640px) {
   .explorer-controls {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 24px;
+    margin-bottom: 28px;
   }
 }
 
@@ -215,9 +264,9 @@ section.plans-section {
 
 .slider-control input[type='range']::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 24px;
-  height: 24px;
-  margin-top: -9px;
+  width: 26px;
+  height: 26px;
+  margin-top: -10px;
   border-radius: 50%;
   background: var(--accent);
   border: 3px solid var(--bg);
@@ -238,8 +287,8 @@ section.plans-section {
 }
 
 .slider-control input[type='range']::-moz-range-thumb {
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   background: var(--accent);
   border: 3px solid var(--bg);
@@ -484,7 +533,7 @@ section.plans-section {
 }
 
 .chart-table-toggle {
-  margin-top: 12px;
+  margin: 2px 0 0 -8px;
   background: none;
   border: none;
   color: var(--muted);
@@ -492,7 +541,7 @@ section.plans-section {
   font-weight: 600;
   text-decoration: underline;
   cursor: pointer;
-  padding: 0;
+  padding: 10px 8px;
 }
 
 .chart-table-toggle:hover {
@@ -541,21 +590,22 @@ section.plans-section {
 
 .plan-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  grid-template-columns: 1fr;
+  gap: 12px;
   margin-top: 16px;
 }
 
-@media (max-width: 720px) {
+@media (min-width: 720px) {
   .plan-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
   }
 }
 
 .plan-card {
   display: flex;
   flex-direction: column;
-  padding: 22px;
+  padding: 20px;
   background: var(--surface);
   border-radius: 20px;
   text-decoration: none;
@@ -656,14 +706,15 @@ section.plans-section {
 
 .stat-tile-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
   margin-bottom: 8px;
 }
 
-@media (max-width: 640px) {
+@media (min-width: 640px) {
   .stat-tile-grid {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
   }
 }
 
@@ -695,10 +746,16 @@ section.plans-section {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  padding: 28px 28px 32px;
+  padding: 20px 20px 24px;
   background: var(--accent-bg);
   border-radius: 24px;
   margin-bottom: 12px;
+}
+
+@media (min-width: 640px) {
+  .hero-stat {
+    padding: 28px 28px 32px;
+  }
 }
 
 .hero-stat-label {
@@ -708,13 +765,14 @@ section.plans-section {
 }
 
 .hero-stat-value {
-  font-size: 48px;
+  font-size: 36px;
   font-weight: 800;
-  letter-spacing: -1.5px;
+  letter-spacing: -1.1px;
   color: var(--text-h);
   font-variant-numeric: tabular-nums;
-  @media (max-width: 640px) {
-    font-size: 36px;
+  @media (min-width: 640px) {
+    font-size: 48px;
+    letter-spacing: -1.5px;
   }
 }
 
@@ -744,10 +802,19 @@ section.plans-section {
 
 .detail-section-header {
   display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
   margin-bottom: 16px;
+}
+
+@media (min-width: 480px) {
+  .detail-section-header {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 16px;
+  }
 }
 
 .detail-section-header h2 {
@@ -802,8 +869,21 @@ section.plans-section {
 .step-item-row {
   display: flex;
   align-items: center;
+  gap: 4px;
+}
+
+/* The whole row (minus the chevron) is the tap target, not just the circle. */
+.step-toggle {
+  flex: 1;
+  display: flex;
+  align-items: center;
   gap: 14px;
-  padding: 14px 0;
+  min-height: 48px;
+  padding: 12px 4px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
 }
 
 .step-checkbox {
@@ -811,7 +891,6 @@ section.plans-section {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: none;
   background: var(--bg);
   color: var(--muted);
   display: flex;
@@ -819,11 +898,9 @@ section.plans-section {
   justify-content: center;
   font-size: 13px;
   font-weight: 700;
-  cursor: pointer;
-  padding: 0;
 }
 
-.step-item-done > .step-item-row > .step-checkbox {
+.step-item-done .step-checkbox {
   background: var(--accent);
   color: var(--on-accent);
 }
@@ -842,12 +919,15 @@ section.plans-section {
 
 .step-expand {
   flex: none;
+  width: 44px;
+  height: 44px;
   background: none;
   border: none;
   color: var(--muted);
   cursor: pointer;
   display: flex;
-  padding: 4px;
+  align-items: center;
+  justify-content: center;
   transition: transform 0.15s;
 }
 
@@ -858,16 +938,18 @@ section.plans-section {
 .substep-list {
   list-style: none;
   margin: 0;
-  padding: 0 0 16px 42px;
+  padding: 0 0 8px 42px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 
 .substep-item {
   display: flex;
-  align-items: center;
+}
+
+.step-toggle-sub {
   gap: 12px;
+  min-height: 44px;
 }
 
 .step-checkbox-sub {
@@ -894,13 +976,14 @@ section.plans-section {
 
 .pros-cons-section {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  grid-template-columns: 1fr;
+  gap: 20px;
 }
 
-@media (max-width: 640px) {
+@media (min-width: 640px) {
   .pros-cons-section {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
   }
 }
 

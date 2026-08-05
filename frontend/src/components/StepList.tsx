@@ -26,15 +26,16 @@ function StepItem({ step, index, onToggle }: { step: PlanStep; index: number; on
       <div className="step-item-row">
         <button
           type="button"
-          className="step-checkbox"
+          className="step-toggle"
           role="checkbox"
           aria-checked={step.completed}
-          aria-label={step.title}
           onClick={() => onToggle(step.id, !step.completed)}
         >
-          {step.completed ? <CheckIcon size={13} /> : index}
+          <span className="step-checkbox" aria-hidden="true">
+            {step.completed ? <CheckIcon size={13} /> : index}
+          </span>
+          <span className="step-title">{step.title}</span>
         </button>
-        <span className="step-title">{step.title}</span>
         {hasSubsteps && (
           <button
             type="button"
@@ -53,15 +54,16 @@ function StepItem({ step, index, onToggle }: { step: PlanStep; index: number; on
             <li key={sub.id} className={`substep-item ${sub.completed ? 'substep-item-done' : ''}`}>
               <button
                 type="button"
-                className="step-checkbox step-checkbox-sub"
+                className="step-toggle step-toggle-sub"
                 role="checkbox"
                 aria-checked={sub.completed}
-                aria-label={sub.title}
                 onClick={() => onToggle(sub.id, !sub.completed)}
               >
-                {sub.completed && <CheckIcon size={11} />}
+                <span className="step-checkbox step-checkbox-sub" aria-hidden="true">
+                  {sub.completed && <CheckIcon size={11} />}
+                </span>
+                <span className="step-title">{sub.title}</span>
               </button>
-              <span className="step-title">{sub.title}</span>
             </li>
           ))}
         </ul>

@@ -29,7 +29,7 @@
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
-  font: 18px/145% var(--sans);
+  font: 16px/145% var(--sans);
   letter-spacing: 0.18px;
   color-scheme: light dark;
   color: var(--text);
@@ -39,8 +39,8 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
+  @media (min-width: 1024px) {
+    font-size: 18px;
   }
 }
 
@@ -84,21 +84,22 @@ h2 {
 }
 
 h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+  font-size: 36px;
+  letter-spacing: -1.08px;
+  margin: 20px 0;
+  @media (min-width: 1024px) {
+    font-size: 56px;
+    letter-spacing: -1.68px;
+    margin: 32px 0;
   }
 }
 h2 {
-  font-size: 24px;
+  font-size: 20px;
   line-height: 118%;
   letter-spacing: -0.24px;
   margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
+  @media (min-width: 1024px) {
+    font-size: 24px;
   }
 }
 p {
